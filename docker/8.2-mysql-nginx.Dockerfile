@@ -1,4 +1,4 @@
-FROM ghcr.io/dnj/php-alpine:8.1-mysql-nginx
+FROM ghcr.io/dnj/php-alpine:8.2-mysql-nginx
 
 RUN rmdir /var/www/html && \
 	ln -s /var/www/public /var/www/html && \
