@@ -1,4 +1,4 @@
-FROM ghcr.io/dnj/php-alpine:8.1-mysql
+FROM ghcr.io/dnj/php-alpine:8.2-mysql
 
 RUN apk add --update --no-cache supervisor && \
 	(crontab -u www-data -l 2>/dev/null && echo "* * * * * /usr/local/bin/php  /var/www/artisan schedule:run > /dev/null 2>&1") | crontab -u www-data -
