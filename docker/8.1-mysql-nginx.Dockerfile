@@ -1,8 +1,7 @@
 FROM ghcr.io/dnj/php-alpine:8.1-mysql-nginx
 
-RUN rmdir /var/www/html && \
+RUN --mount=type=bind,source=fs,target=/mnt rmdir /var/www/html && \
 	ln -s /var/www/public /var/www/html && \
-	(crontab -u www-data -l 2>/dev/null && echo "* * * * * /usr/local/bin/php  /var/www/artisan schedule:run > /dev/null 2>&1") | crontab -u www-data -
-
-COPY nginx/ /etc/nginx/conf.d/default.conf.d/ 
-COPY supervisor/worker.ini /etc/supervisor.d/
+	cp -v /mnt/etc/supervisor.d/worker.ini /etc/supervisor.d/worker.ini && \
+	cp -v /mnt/etc/nginx/conf.d/default.conf.d/* /etc/nginx/conf.d/default.conf.d/ && \
+	echo "* * * * * /usr/local/bin/php /var/www/artisan schedule:run" > /etc/crontab

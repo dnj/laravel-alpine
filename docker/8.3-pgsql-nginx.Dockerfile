@@ -1,4 +1,4 @@
-FROM ghcr.io/dnj/php-alpine:8.2-mysql-nginx
+FROM ghcr.io/dnj/php-alpine:8.3-pgsql-nginx
 
 RUN --mount=type=bind,source=fs,target=/mnt rmdir /var/www/html && \
 	ln -s /var/www/public /var/www/html && \

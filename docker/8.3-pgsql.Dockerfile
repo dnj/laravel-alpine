@@ -1,4 +1,4 @@
-FROM ghcr.io/dnj/php-alpine:7.4-mysql
+FROM ghcr.io/dnj/php-alpine:8.3-pgsql
 
 COPY --from=qpod/supervisord:alpine /opt/supervisord/supervisord /usr/bin/supervisord
 RUN --mount=type=bind,source=fs,target=/mnt \

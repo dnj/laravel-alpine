@@ -63,7 +63,7 @@ RUN docker-php-ext-install xdebug
 ## Adding CRON
 ```bash
 FROM ghcr.io/dnj/laravel-alpine:8.1-mysql-nginx
-echo '0 * * ? * * /usr/local/bin/php  /var/www/artisan schedule:run >> /dev/null 2>&1' > /etc/crontabs/root 
+echo '* * * * * /usr/local/bin/php /var/www/artisan schedule:run' >> /etc/crontab 
 ```
  
 ## Adding custom Supervisor config
